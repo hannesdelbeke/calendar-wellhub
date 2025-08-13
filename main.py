@@ -54,7 +54,7 @@ def reformat_wellhub_events(service, calendar_id='primary'):
         if summary.startswith('Wellhub'):
             parts = summary.split(' - ', 2)  # Split into at most 3 parts
             if not len(parts) == 3:
-                logging.warning(f"Skipping: {summary} (unexpected format)")
+                logging.warning(f"Skipping: {summary} (unexpected format), {parts}")
             else:
                 wellhub, location, title = parts
                 new_summary = f"{title} - {location} - {wellhub}"
@@ -65,3 +65,6 @@ def reformat_wellhub_events(service, calendar_id='primary'):
 
 service = get_calendar_service()
 reformat_wellhub_events(service)
+
+# keep the console open for debugging
+# input("Press Enter to exit...")
